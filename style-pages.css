@@ -1,0 +1,308 @@
+main {
+    padding-top: 80px; /* Adjust as needed to clear the fixed header */
+    padding-bottom: 40px;
+    min-height: calc(100vh - 150px); /* Adjust to ensure footer is at the bottom */
+}
+
+/* Page-specific Layouts */
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-intro {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-gray);
+}
+
+/* Case Study Grid (SEO Page) */
+.case-study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.case-study-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    color: var(--text-gray);
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+.card-tasks {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.card-tasks li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.card-tasks i {
+    color: var(--teal);
+    margin-right: 10px;
+}
+
+.card-tools {
+    display: flex;
+    gap: 15px;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.card-tools i:hover {
+    color: var(--teal);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background-color: #f0f0f0;
+    color: var(--text-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: var(--teal);
+    color: #fff;
+}
+
+/* Campaign Grid (Digital Marketing Page) */
+.campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.campaign-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.campaign-card .card-thumbnail {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.campaign-card .card-content {
+    padding: 25px;
+}
+
+.card-platform {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-gray);
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.card-platform i {
+    font-size: 1.2rem;
+    color: var(--teal);
+}
+
+/* Design Grid (Design Page) */
+.design-grid {
+    margin: 0 auto;
+}
+
+.grid-item {
+    position: relative;
+    display: block;
+    width: calc(33.333% - 20px);
+    margin-bottom: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.grid-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.grid-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Video Grid (Video Editing Page) */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.video-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    position: relative;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    display: block;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.8rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.video-card:hover .play-icon {
+    background-color: var(--teal);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-info {
+    padding: 20px;
+}
+
+.video-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-gray);
+}
+
+.video-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.video-meta i {
+    font-size: 1.2rem;
+}
+
+/* Header Overrides for Secondary Pages */
+#header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+#header .brand,
+#header .nav-links a {
+    color: var(--text-dark);
+}
+
+#header .nav-links a:hover,
+#header .nav-links a.active {
+    color: var(--teal);
+}
+
+#header .menu-icon i {
+    color: var(--text-dark);
+}

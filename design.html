@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Projects - Ajith D</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-pages.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Lightgallery -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-thumbnail.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="navbar">
+            <a href="index.html" class="brand">Ajith D</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="seo.html">SEO</a></li>
+                <li><a href="digitalmarketing.html">Digital Marketing</a></li>
+                <li><a href="design.html" class="active">Design</a></li>
+                <li><a href="videoediting.html">Video Editing</a></li>
+            </ul>
+            <div class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="page-content">
+            <div class="page-header">
+                <h1 class="section-title">Design Projects</h1>
+                <p class="page-intro">A collection of my creative posters, banners, and graphics for web and social media.</p>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="instagram">Instagram Posts</button>
+                <button class="filter-btn" data-filter="banners">Banners</button>
+                <button class="filter-btn" data-filter="ads">Ads</button>
+            </div>
+
+            <div class="design-grid" id="lightgallery">
+                <!-- Design Item 1 -->
+                <a href="https://via.placeholder.com/600x800.png?text=Diwali+Poster" class="grid-item" data-category="instagram" data-sub-html="<h4>Diwali Poster</h4><p>Designed using Canva</p>">
+                    <img src="https://via.placeholder.com/600x800.png?text=Diwali+Poster" alt="Diwali Poster">
+                    <div class="overlay"><span>Diwali Poster</span></div>
+                </a>
+                <!-- Design Item 2 -->
+                <a href="https://via.placeholder.com/800x400.png?text=Website+Banner" class="grid-item" data-category="banners" data-sub-html="<h4>Website Banner</h4><p>Designed using Photoshop</p>">
+                    <img src="https://via.placeholder.com/800x400.png?text=Website+Banner" alt="Website Banner">
+                    <div class="overlay"><span>Website Banner</span></div>
+                </a>
+                <!-- Design Item 3 -->
+                <a href="https://via.placeholder.com/600x600.png?text=Social+Media+Ad" class="grid-item" data-category="ads" data-sub-html="<h4>Social Media Ad</h4><p>Designed using Canva</p>">
+                    <img src="https://via.placeholder.com/600x600.png?text=Social+Media+Ad" alt="Social Media Ad">
+                    <div class="overlay"><span>Social Media Ad</span></div>
+                </a>
+                 <!-- Design Item 4 -->
+                <a href="https://via.placeholder.com/600x750.png?text=Instagram+Story" class="grid-item" data-category="instagram" data-sub-html="<h4>Instagram Story</h4><p>Designed using Canva</p>">
+                    <img src="https://via.placeholder.com/600x750.png?text=Instagram+Story" alt="Instagram Story">
+                    <div class="overlay"><span>Instagram Story</span></div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/ajith-fullstackdigitalmarketing/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:ajithraj373@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>Crafted with ❤️ by Ajith D | &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
