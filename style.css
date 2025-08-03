@@ -73,9 +73,10 @@ section {
 
 .btn-primary:hover {
     background-color: transparent;
-    border-color: var(--accent-orange);
-    color: var(--accent-orange);
+    border-color: #FFD700;
+    color: #FFD700;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
 }
 
 .btn-secondary {
@@ -85,9 +86,11 @@ section {
 }
 
 .btn-secondary:hover {
-    background-color: var(--text-light);
-    color: var(--navy);
+    background-color: #FFD700;
+    color: #0F2027; /* Dark text for contrast on gold */
+    border-color: #FFD700;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
 }
 
 /* --- Header --- */
@@ -128,8 +131,6 @@ section {
     text-decoration: none;
     transition: color 0.3s ease;
 }
-
-
 
 .nav-links {
     display: flex;
@@ -176,6 +177,19 @@ section {
     cursor: pointer;
 }
 
+/* --- Keyframes for Animation --- */
+@keyframes subtle-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* --- Hero Section --- */
 #hero {
     height: 100vh;
@@ -184,8 +198,24 @@ section {
     justify-content: center;
     text-align: center;
     color: var(--text-light);
-    background: linear-gradient(135deg, var(--navy), var(--teal));
+    background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+    background-size: 200% 200%;
     position: relative;
+    overflow: hidden; /* Ensures pseudo-elements are contained */
+    animation: subtle-gradient 20s ease infinite;
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    width: 70vw;
+    height: 70vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(44, 83, 100, 0.4) 0%, rgba(15, 32, 39, 0) 65%);
+    filter: blur(100px);
+    pointer-events: none;
 }
 
 .hero-content {
@@ -198,20 +228,27 @@ section {
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.1;
+    letter-spacing: 1px;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 25px;
-    font-weight: 400;
-    color: var(--accent-glow);
+    font-weight: 500;
+    color: #FFD700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 .hero-tagline {
     font-size: 1.1rem;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 40px;
     line-height: 1.7;
+}
+
+.hero-buttons {
+    margin-top: 20px;
 }
 
 .hero-buttons .btn {
@@ -230,7 +267,7 @@ section {
 .shape {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 255, 209, 0.1));
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0) 70%);
     filter: blur(80px);
     animation: float 20s infinite linear;
 }
@@ -247,7 +284,12 @@ section {
 
 /* --- About Section --- */
 #about {
-    background-color: #fff;
+    background: linear-gradient(135deg, #f5f7fa, #e3eeff);
+    color: var(--text-dark);
+}
+
+#about .section-title::after {
+    background: linear-gradient(90deg, var(--teal), var(--accent-glow));
 }
 
 .about-container {
@@ -255,6 +297,7 @@ section {
     grid-template-columns: 1fr 2fr;
     gap: 50px;
     align-items: center;
+    margin-top: 30px;
 }
 
 .about-image {
@@ -320,8 +363,12 @@ section {
 
 /* --- Skills & Tools Section --- */
 #skills {
-    background-color: var(--background-alt);
-    padding: 80px 5%;
+    background: #fff;
+    color: var(--text-dark);
+}
+
+#skills .section-title::after {
+    background: linear-gradient(90deg, var(--teal), var(--accent-glow));
 }
 
 .skills-grid {
@@ -329,6 +376,7 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     margin-bottom: 80px;
+    color: var(--text-muted);
 }
 
 .skill-card {
@@ -428,8 +476,6 @@ section {
     font-size: 2rem;
 }
 
-
-
 .tool-card:hover i {
     color: var(--teal);
 }
@@ -437,7 +483,12 @@ section {
 /* --- Explore My Work Section --- */
 #work {
     padding: 80px 5%;
-    background-color: var(--background-alt);
+    background: linear-gradient(135deg, #f5f7fa, #e3eeff);
+    color: var(--text-dark);
+}
+
+#work .section-title::after {
+    background: linear-gradient(90deg, var(--teal), var(--accent-glow));
 }
 
 .work-grid {
@@ -487,9 +538,14 @@ section {
 
 /* --- Contact Section --- */
 #contact {
-    background-color: #fff;
+    background: #fff;
+    color: var(--text-dark);
     text-align: center;
     padding: 50px 5%;
+}
+
+#contact .section-title::after {
+    background: linear-gradient(90deg, var(--teal), var(--accent-glow));
 }
 
 .contact-container-new {
