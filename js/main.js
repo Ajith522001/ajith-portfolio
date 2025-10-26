@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Mobile Detection --- //
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
     // --- Sitewide: Mobile Menu --- //
     const menuIcon = document.querySelector('.menu-icon');
     const navLinks = document.querySelector('.nav-links');
@@ -21,15 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Sticky Header & Back to Top Button --- //
         const header = document.getElementById('header');
         const backToTopButton = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-                backToTopButton.classList.add('visible');
-            } else {
-                header.classList.remove('scrolled');
-                backToTopButton.classList.remove('visible');
-            }
-        });
+        
+        // Throttle scroll events for better mobile performance
+        let scrollTimeout;
+        const handleScroll = () => {
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                    backToTopButton.classList.add('visible');
+                } else {
+                    header.classList.remove('scrolled');
+                    backToTopButton.classList.remove('visible');
+                }
+                scrollTimeout = null;
+            }, isMobile ? 100 : 16); // More aggressive throttling on mobile
+        };
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         // --- Testimonial Slider --- //
         const testimonials = document.querySelectorAll('.testimonial-card');
@@ -70,45 +82,97 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // --- ScrollReveal Animations --- //
-        const sr = ScrollReveal({ distance: '60px', duration: 2500, delay: 400, reset: true });
-        sr.reveal('.hero-title', { delay: 500 });
-        sr.reveal('.hero-subtitle', { delay: 600, origin: 'bottom' });
-        sr.reveal('.hero-buttons', { delay: 700, origin: 'bottom' });
-        sr.reveal('.section-title', { delay: 200, origin: 'left' });
-        sr.reveal('#about .about-image', { delay: 300, origin: 'left' });
-        sr.reveal('#about .about-text', { delay: 400, origin: 'right' });
-        sr.reveal('.service-card', { interval: 200 });
-        sr.reveal('.portfolio-filters', { delay: 200 });
-        sr.reveal('.portfolio-grid', { delay: 400, origin: 'bottom' });
-        sr.reveal('.testimonial-slider', { delay: 300 });
-        sr.reveal('.contact-info', { delay: 300, origin: 'left' });
-        sr.reveal('.contact-form', { delay: 400, origin: 'right' });
+        // Use lighter animations on mobile for better performance
+        const srConfig = isMobile ? 
+            { distance: '30px', duration: 800, delay: 100, reset: true } : 
+            { distance: '60px', duration: 2500, delay: 400, reset: true };
+        
+        const sr = ScrollReveal(srConfig);
+        
+        if (isMobile) {
+            // Simplified animations for mobile
+            sr.reveal('.hero-title', { delay: 200 });
+            sr.reveal('.hero-subtitle', { delay: 300, origin: 'bottom' });
+            sr.reveal('.hero-buttons', { delay: 400, origin: 'bottom' });
+            sr.reveal('.section-title', { delay: 100 });
+            sr.reveal('#about .about-image', { delay: 150, origin: 'left' });
+            sr.reveal('#about .about-text', { delay: 200, origin: 'right' });
+            sr.reveal('.service-card', { interval: 100 });
+            sr.reveal('.portfolio-filters', { delay: 100 });
+            sr.reveal('.portfolio-grid', { delay: 200, origin: 'bottom' });
+            sr.reveal('.testimonial-slider', { delay: 150 });
+            sr.reveal('.contact-info', { delay: 150, origin: 'left' });
+            sr.reveal('.contact-form', { delay: 200, origin: 'right' });
+        } else {
+            // Full animations for desktop
+            sr.reveal('.hero-title', { delay: 500 });
+            sr.reveal('.hero-subtitle', { delay: 600, origin: 'bottom' });
+            sr.reveal('.hero-buttons', { delay: 700, origin: 'bottom' });
+            sr.reveal('.section-title', { delay: 200, origin: 'left' });
+            sr.reveal('#about .about-image', { delay: 300, origin: 'left' });
+            sr.reveal('#about .about-text', { delay: 400, origin: 'right' });
+            sr.reveal('.service-card', { interval: 200 });
+            sr.reveal('.portfolio-filters', { delay: 200 });
+            sr.reveal('.portfolio-grid', { delay: 400, origin: 'bottom' });
+            sr.reveal('.testimonial-slider', { delay: 300 });
+            sr.reveal('.contact-info', { delay: 300, origin: 'left' });
+            sr.reveal('.contact-form', { delay: 400, origin: 'right' });
+        }
     }
 
     // --- Work Sample Pages: Lightbox, Filtering, Masonry --- //
     const galleryContainer = document.getElementById('lightgallery');
     if (galleryContainer) {
         const isVideoPage = document.querySelector('.video-grid');
-        lightGallery(galleryContainer, {
+        
+        // Optimize lightGallery for mobile
+        const lightGalleryConfig = {
             selector: isVideoPage ? '.video-card' : '.gallery-item, .grid-item',
             plugins: isVideoPage ? [lgVideo] : [lgThumbnail],
             thumbnail: !isVideoPage,
             download: false,
             licenseKey: '0000-0000-000-0000'
-        });
+        };
+        
+        // Add mobile-specific optimizations
+        if (isMobile) {
+            lightGalleryConfig.mode = 'lg-fade';
+            lightGalleryConfig.speed = 300;
+            lightGalleryConfig.preload = 1; // Reduce preloading on mobile
+        }
+        
+        lightGallery(galleryContainer, lightGalleryConfig);
     }
 
     const designGrid = document.querySelector('.design-grid');
     let msnry;
     if (designGrid) {
-        imagesLoaded(designGrid, () => {
-            msnry = new Masonry(designGrid, {
-                itemSelector: '.grid-item',
-                columnWidth: '.grid-item',
-                gutter: 30,
-                percentPosition: true
+        // Optimize masonry for mobile
+        const masonryConfig = {
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-item',
+            gutter: isMobile ? 15 : 30, // Smaller gutter on mobile
+            percentPosition: true
+        };
+        
+        if (isMobile) {
+            // Disable masonry on very small screens to improve performance
+            if (window.innerWidth < 480) {
+                designGrid.style.display = 'block';
+                designGrid.querySelectorAll('.grid-item').forEach(item => {
+                    item.style.width = '100%';
+                    item.style.marginBottom = '15px';
+                });
+            } else {
+                imagesLoaded(designGrid, () => {
+                    msnry = new Masonry(designGrid, masonryConfig);
+                });
+            }
+        } else {
+            imagesLoaded(designGrid, () => {
+                msnry = new Masonry(designGrid, masonryConfig);
             });
-        });
+        }
     }
 
     const filterButtons = document.querySelectorAll('#page-content .filter-btn');
@@ -119,13 +183,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
-                gridItems.forEach(item => {
-                    const category = item.dataset.category;
-                    const shouldShow = (filter === 'all' || category === filter);
-                    item.style.display = shouldShow ? 'block' : 'none';
-                });
-                if (msnry) {
-                    msnry.layout();
+                
+                // Optimize filtering for mobile
+                if (isMobile) {
+                    // Use requestAnimationFrame for smoother mobile performance
+                    requestAnimationFrame(() => {
+                        gridItems.forEach(item => {
+                            const category = item.dataset.category;
+                            const shouldShow = (filter === 'all' || category === filter);
+                            item.style.display = shouldShow ? 'block' : 'none';
+                        });
+                        if (msnry) {
+                            msnry.layout();
+                        }
+                    });
+                } else {
+                    gridItems.forEach(item => {
+                        const category = item.dataset.category;
+                        const shouldShow = (filter === 'all' || category === filter);
+                        item.style.display = shouldShow ? 'block' : 'none';
+                    });
+                    if (msnry) {
+                        msnry.layout();
+                    }
                 }
             });
         });
